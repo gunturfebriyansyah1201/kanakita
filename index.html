@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kanakita - Belajar Hiragana & Katakana Pemula</title>
+  <meta name="description"
+    content="Kanakita adalah platform web interaktif mobile-friendly untuk pemula belajar Hiragana dan Katakana Jepang dengan latihan pelafalan, stroke order, dan kuis.">
+
+  <!-- Google Fonts: Outfit & Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar Navigation (Desktop Header) -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="brand" data-tab="home">
+        <div class="brand-icon">あ</div>
+        <div class="brand-text">Kana<span>kita</span></div>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links">
+        <li><button class="nav-link active" data-tab="home">Beranda</button></li>
+        <li><button class="nav-link" data-tab="kana-grid">Huruf</button></li>
+        <li><button class="nav-link" data-tab="kosakata">Kosakata</button></li>
+        <li><button class="nav-link" data-tab="flashcard">Flashcard</button></li>
+        <li><button class="nav-link" data-tab="kuis">Kuis</button></li>
+        <li><button class="nav-link" data-tab="profil">Profil Saya</button></li>
+      </ul>
+
+      <div class="user-nav-actions">
+        <div class="streak-pill" title="Streak Belajar Berturut-Turut">
+          🔥 <span id="streak-count-display">1 Hari</span>
+        </div>
+
+        <button id="mute-toggle-btn" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;">
+          🔊 Audio On
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Bottom Navigation Bar (Sleek Native App Feel on Smartphones) -->
+  <nav class="mobile-bottom-nav">
+    <div class="mobile-bottom-nav-inner">
+      <button class="mobile-nav-btn active" data-tab="home">
+        <span class="nav-icon">🏠</span>
+        <span>Beranda</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="kana-grid">
+        <span class="nav-icon">🈸</span>
+        <span>Huruf</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="kosakata">
+        <span class="nav-icon">📚</span>
+        <span>Kosakata</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="flashcard">
+        <span class="nav-icon">🃏</span>
+        <span>Flashcard</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="kuis">
+        <span class="nav-icon">🎯</span>
+        <span>Kuis</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="profil">
+        <span class="nav-icon">👤</span>
+        <span>Profil</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Body -->
+  <main class="app-content container">
+
+    <!-- TAB 1: BERANDA / HERO SECTION -->
+    <section id="tab-home" class="tab-pane active" style="margin-top: 20px;">
+      <div class="hero-card">
+        <div class="hero-content">
+          <span class="badge badge-primary" style="margin-bottom: 12px;">🌸 Platform Pemula Bahasa Jepang</span>
+          <h1>Kuasai <span>Hiragana & Katakana</span> Secara Interaktif!</h1>
+          <p>
+            Kanakita membantu kamu mengenali hiragana dan katakana melalui latihan pelafalan, stroke order,
+            serta kuis interaktif.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-tab="kana-grid">Mulai Belajar Huruf</button>
+            <button class="btn btn-secondary" data-tab="kuis">Ikuti Kuis Tantangan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Grid -->
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 30px;">
+        <div
+          style="background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">✍️</div>
+          <h3 style="font-weight: 800; margin-bottom: 4px;">Animasi Stroke Order</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Pelajari urutan goresan yang benar dan berlatih
+            langsung di kanvas menggambar.</p>
+        </div>
+
+        <div
+          style="background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">🏆</div>
+          <h3 style="font-weight: 800; margin-bottom: 4px;">Kuis & Badges</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Evaluasi hasil belajar melalui kuis pilihan ganda
+            berwaktu dan kumpulkan lencana prestasi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: TABEL KANA (KATALOG HURUF) -->
+    <section id="tab-kana-grid" class="tab-pane" style="margin-top: 20px;">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2>Daftar Huruf</h2>
+          <p>Klik kartu huruf untuk mendengar pelafalan, melihat cara tulis, dan contoh kosakata.</p>
+        </div>
+
+        <div class="filter-bar-group" style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+          <div class="filter-bar kana-system-filter">
+            <button class="filter-btn active" data-system-filter="hiragana">Hiragana (ひらがな)</button>
+            <button class="filter-btn" data-system-filter="katakana">Katakana (カタカナ)</button>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="category-filter-bar" style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end;">
+            <button class="filter-pill active" data-category-filter="all">Semua (107)</button>
+            <button class="filter-pill" data-category-filter="basic">Gojūon Dasar (46)</button>
+            <button class="filter-pill" data-category-filter="dakuten">Dakuten (25)</button>
+            <button class="filter-pill" data-category-filter="yoon">Yōon (21)</button>
+            <button class="filter-pill" data-category-filter="yoon-dakuten">Yōon + Dakuten (15)</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Kana Cards Grid Container -->
+      <div id="kana-grid" class="kana-grid-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 3: KOSAKATA KANA -->
+    <section id="tab-kosakata" class="tab-pane" style="margin-top: 20px;">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2>Galeri Kosakata Kana</h2>
+          <p>Contoh kosakata yang tersedia untuk setiap karakter, ditampilkan dalam sistem tulisan yang dipilih.</p>
+        </div>
+
+        <div class="filter-bar vocab-search-filter">
+          <span class="vocab-search-icon" aria-hidden="true">🔍</span>
+          <input type="text" id="vocab-search-input" placeholder="Cari kosakata..."
+            style="padding: 8px 14px 8px 38px; border-radius: var(--radius-full); border: 1px solid var(--border-medium); font-size: 0.85rem; min-width: 220px; font-family: var(--font-sans); background: white;">
+        </div>
+      </div>
+
+      <div class="filter-bar vocab-system-filters" role="group" aria-label="Pilih sistem tulisan kosakata">
+        <button type="button" class="filter-btn active" data-vocab-system="hiragana" aria-pressed="true">Hiragana</button>
+        <button type="button" class="filter-btn" data-vocab-system="katakana" aria-pressed="false">Katakana</button>
+      </div>
+
+      <div id="vocab-gallery-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 4: LATIHAN FLASHCARD -->
+    <section id="tab-flashcard" class="tab-pane flashcard-centered" style="margin-top: 20px;">
+      <div class="section-header" style="text-align: center; justify-content: center; width: 100%;">
+        <div class="section-title-group" style="text-align: center;">
+          <h2>Flashcard Kana</h2>
+          <p>Ketuk kartu untuk membalik dan melihat romaji!</p>
+        </div>
+      </div>
+
+      <div class="flashcard-section">
+        <div class="flashcard-scene">
+          <div id="flashcard-object" class="flashcard-object">
+            <!-- Front Face -->
+            <div class="flashcard-face flashcard-front">
+              <div id="fc-front-char" class="flashcard-char">あ</div>
+              <div class="flashcard-hint">Ketuk kartu untuk membalik 🔄</div>
+            </div>
+            <!-- Back Face -->
+            <div class="flashcard-face flashcard-back">
+              <div id="fc-back-romaji" style="font-size: 3rem; font-weight: 800; color: var(--primary);">/a/</div>
+              <div class="flashcard-hint" style="margin-top: 14px;">Ketuk lagi untuk membalik 🔄</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 16px; gap: 8px;">
+          <button id="fc-prev-btn" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.85rem;">⬅️
+            Sebelumnya</button>
+          <span id="fc-counter-display" style="font-weight: 700; color: var(--text-secondary); font-size: 0.85rem;">1 /
+            46</span>
+          <button id="fc-next-btn" class="btn btn-primary" style="padding: 8px 14px; font-size: 0.85rem;">Berikutnya
+            ➡️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: KUIS INTERAKTIF -->
+    <section id="tab-kuis" class="tab-pane quiz-menu-centered" style="margin-top: 20px;">
+      <div class="quiz-container">
+
+        <!-- Quiz Intro View -->
+        <div id="quiz-intro-view" style="text-align: center;">
+          <div style="font-size: 3.5rem; margin-bottom: 8px;">🎯</div>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Kuis Tantangan Kana</h2>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;">Uji pemahaman kamu! 10 soal
+            acak dengan waktu 15 detik per soal. Dapatkan skor 100% untuk membuka lencana prestasimu.</p>
+          <button id="start-quiz-btn" class="btn btn-primary" style="padding: 12px 28px; font-size: 1rem;">🚀 Mulai Kuis
+            Sekarang</button>
+        </div>
+
+        <!-- Quiz Active View -->
+        <div id="quiz-active-view" style="display: none;">
+          <div class="quiz-header-bar">
+            <span id="quiz-question-num" style="font-weight: 800; color: var(--text-secondary);">Soal 1 / 10</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="timer-badge">⏱️ <span id="quiz-timer-count">15s</span></div>
+              <button id="stop-quiz-btn" type="button" class="btn btn-outline"
+                style="padding: 6px 10px; font-size: 0.8rem; min-height: 32px;">Berhenti</button>
+            </div>
+          </div>
+
+          <div class="quiz-progress-track">
+            <div id="quiz-progress-fill" class="quiz-progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <div class="quiz-question-box">
+            <p style="color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;">Bagaimana pembacaan Romaji
+              untuk huruf berikut?</p>
+            <div id="quiz-char-display" class="quiz-question-char">あ</div>
+          </div>
+
+          <div id="quiz-options-container" class="quiz-options-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Quiz Results View -->
+        <div id="quiz-results-view" style="display: none; text-align: center;">
+          <div style="font-size: 3.5rem; margin-bottom: 8px;">🎉</div>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 6px;">Kuis Selesai!</h2>
+          <div id="final-score-display"
+            style="font-size: 3rem; font-weight: 800; color: var(--primary); margin: 8px 0;">90 / 100</div>
+          <p id="final-accuracy-display" style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 20px;">
+            Akurasi Jawaban: 90%</p>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;">
+            <button id="restart-quiz-btn" class="btn btn-primary">🔄 Coba Kuis Lagi</button>
+            <button id="quiz-results-menu-btn" class="btn btn-outline">Kembali ke Menu</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 6: DASHBOARD PROFIL -->
+    <section id="tab-profil" class="tab-pane" style="margin-top: 20px;">
+      <div class="profile-grid">
+        <!-- Profile Left Info -->
+        <div class="profile-card-left">
+          <button id="user-profile-pill" class="btn btn-primary"
+            style="width: 100%; min-height: 44px; margin-bottom: 16px;" title="Masuk ke akun">
+            ⛩️ <span>Masuk</span>
+          </button>
+
+          <div style="display: grid; gap: 8px;">
+            <details id="profile-username-menu" class="profile-username-menu" hidden>
+              <summary id="profile-edit-username-btn" class="btn btn-outline"
+                style="width: 100%; font-size: 0.85rem; padding: 8px;">Ubah Username</summary>
+              <form id="profile-username-form" style="display: grid; gap: 8px; text-align: left; padding-top: 10px;">
+                <label for="profile-username-input" style="font-size: 0.85rem; font-weight: 700;">Username</label>
+                <input id="profile-username-input" type="text" maxlength="24" required
+                  style="width: 100%; padding: 9px; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); font-family: var(--font-sans);">
+                <div style="display: flex; gap: 8px;">
+                  <button type="submit" class="btn btn-primary" style="flex: 1; padding: 8px;">Simpan</button>
+                  <button id="profile-username-cancel" type="button" class="btn btn-outline" style="flex: 1; padding: 8px;">Batal</button>
+                </div>
+                <p id="profile-username-feedback" role="status" style="font-size: 0.8rem; color: var(--text-secondary);"></p>
+              </form>
+            </details>
+            <button id="profile-guest-btn" class="btn btn-outline"
+              style="width: 100%; font-size: 0.85rem; padding: 8px;">Lanjutkan sebagai Tamu</button>
+          </div>
+        </div>
+
+        <!-- Profile Right Stats & Badges -->
+        <div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+            <div
+              style="background: white; padding: 14px 8px; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+              <div style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">Huruf Dikuasai</div>
+              <div id="prof-mastered-count" style="font-size: 1.6rem; font-weight: 800; color: var(--primary);">0</div>
+            </div>
+
+            <div
+              style="background: white; padding: 14px 8px; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+              <div style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">Streak</div>
+              <div id="prof-streak-count" style="font-size: 1.6rem; font-weight: 800; color: var(--accent-gold);">1 Hari
+              </div>
+            </div>
+
+            <div
+              style="background: white; padding: 14px 8px; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+              <div style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">Skor Tertinggi</div>
+              <div id="prof-highscore-count" style="font-size: 1.6rem; font-weight: 800; color: var(--secondary);">0
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="background: white; padding: 18px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); margin-bottom: 20px;">
+            <h3 style="font-weight: 800; margin-bottom: 10px; font-size: 1.1rem;">🎖️ Lencana Prestasi (Badges)</h3>
+            <div id="prof-badges-grid" class="badges-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div
+            style="background: white; padding: 18px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);">
+            <h3 style="font-weight: 800; margin-bottom: 10px; font-size: 1.1rem;">📊 Riwayat Kuis Terakhir</h3>
+            <div id="prof-quiz-history">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: DETAIL HURUF (KANA DETAIL MODAL) -->
+  <div id="kana-detail-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close-btn">✕</button>
+
+      <div class="modal-kana-header">
+        <div id="modal-kana-char" class="modal-kana-char">あ</div>
+        <div class="modal-kana-info">
+          <h3 id="modal-kana-romaji">Romaji: /a/</h3>
+          <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button id="modal-audio-btn" class="btn btn-secondary"
+              style="padding: 6px 12px; font-size: 0.8rem; min-height: 36px;">🔊 Suara Pelafalan</button>
+            <button id="modal-master-toggle" class="btn btn-outline"
+              style="padding: 6px 12px; font-size: 0.8rem; min-height: 36px;">⭐ Tandai Dikuasai</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stroke Animation Video & Interactive Canvas -->
+      <h4 style="font-weight: 800; margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; justify-content: space-between;">
+        <span>Ayo berlatih sampai kamu bisa! (⁠✯⁠ᴗ⁠✯⁠)</span>
+        <span id="stroke-step-badge" class="badge badge-secondary" style="font-size: 0.75rem;">Goresan 1 / 3</span>
+      </h4>
+
+      <div class="stroke-canvas-layout">
+        <!-- Stroke Order Video Player Box -->
+        <div class="stroke-box video-player-card">
+          <div class="stroke-player-header">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">📹 Petunjuk Goresan</span>
+            <div class="stroke-speed-wrapper">
+              <select id="stroke-speed-select" class="stroke-speed-select" title="Kecepatan Video">
+                <option value="0.5">0.5x (Lambat)</option>
+                <option value="1" selected>1.0x (Normal)</option>
+                <option value="1.5">1.5x (Cepat)</option>
+                <option value="2">2.0x (Sangat Cepat)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="modal-stroke-anim-container" class="stroke-anim-stage"></div>
+          <a id="stroke-source-link" class="stroke-source-link" target="_blank" rel="noopener noreferrer" hidden></a>
+        </div>
+
+        <!-- Canvas Handwriting Practice Pad -->
+        <div class="canvas-box">
+          <div class="canvas-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="margin-bottom: 0;">Tulis di sini</h4>
+          </div>
+          
+          <div class="canvas-wrapper">
+            <canvas id="modal-user-canvas" class="writing-canvas-element" width="160" height="160"></canvas>
+          </div>
+
+          <div class="canvas-actions">
+            <button id="clear-canvas-btn" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem; min-height: 32px;">🗑️ Hapus</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vocab List inside Modal -->
+      <div class="vocab-list-modal">
+        <h4 style="font-weight: 800; margin-bottom: 8px; font-size: 1rem;">📖 Contoh Kata Terkait</h4>
+        <div id="modal-vocab-list">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN / REGISTER -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 400px;">
+      <button id="auth-modal-close" class="modal-close-btn">✕</button>
+
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 2.5rem; margin-bottom: 6px;">⛩️</div>
+        <h2 id="auth-modal-title" style="font-weight: 800; font-size: 1.4rem;">Masuk ke Kanakita</h2>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">Simpan pencapaian dan progres belajar kamu!</p>
+      </div>
+
+      <form id="auth-form">
+        <div id="auth-username-field" style="display: none; margin-bottom: 14px;">
+          <label style="display: block; font-weight: 700; margin-bottom: 4px; font-size: 0.85rem;">Nama Pengguna</label>
+          <input type="text" id="auth-username" placeholder="Masukkan nama panggilan kamu"
+            style="width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); font-family: var(--font-sans);">
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-weight: 700; margin-bottom: 4px; font-size: 0.85rem;">Email</label>
+          <input type="email" id="auth-email" placeholder="nama@email.com" required
+            style="width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); font-family: var(--font-sans);">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label for="auth-pass" style="display: block; font-weight: 700; margin-bottom: 4px; font-size: 0.85rem;">Kata Sandi</label>
+          <div class="auth-password-control">
+            <input type="password" id="auth-pass" placeholder="••••••••" required
+              style="width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); font-family: var(--font-sans);">
+            <button type="button" id="auth-pass-toggle" class="auth-password-toggle" aria-controls="auth-pass"
+              aria-label="Tampilkan kata sandi" aria-pressed="false">Tampilkan</button>
+          </div>
+        </div>
+
+        <button type="submit" id="auth-submit-btn" class="btn btn-primary"
+          style="width: 100%; padding: 10px;">Masuk</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 14px;">
+        <button id="auth-toggle-mode"
+          style="background: none; border: none; color: var(--primary); font-weight: 700; cursor: pointer; font-size: 0.85rem;">
+          Belum punya akun? Daftar gratis
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p><strong>Kanakita</strong> — Belajar Hiragana & Katakana untuk Pemula • 2026</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./data/kana-data.js"></script>
+  <script src="./js/audio.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/canvas.js"></script>
+  <script src="./js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const emojiSegmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+      const emojiPattern = /(?:\p{Extended_Pictographic}|\p{Regional_Indicator}|[#*0-9]\uFE0F?\u20E3)/u;
+      const emojiBaseUrl = 'https://cdn.jsdelivr.net/npm/@lobehub/fluent-emoji-3d@1.1.0/assets/';
+
+      function renderEmojiTextNode(textNode) {
+        const text = textNode.nodeValue;
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        let foundEmoji = false;
+
+        for (const { segment, index } of emojiSegmenter.segment(text)) {
+          if (!emojiPattern.test(segment)) continue;
+
+          foundEmoji = true;
+          if (index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, index)));
+          }
+
+          const emojiImage = document.createElement('img');
+          const codepoints = Array.from(segment, character => character.codePointAt(0).toString(16)).join('-');
+          emojiImage.className = 'fluent-emoji-3d';
+          emojiImage.src = `${emojiBaseUrl}${codepoints}.webp`;
+          emojiImage.alt = segment;
+          emojiImage.onerror = () => {
+            const fallback = document.createElement('span');
+            fallback.className = 'emoji-3d-fallback';
+            fallback.dataset.emojiFallback = 'true';
+            fallback.textContent = segment;
+            emojiImage.replaceWith(fallback);
+          };
+          fragment.appendChild(emojiImage);
+          lastIndex = index + segment.length;
+        }
+
+        if (!foundEmoji) return;
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+        textNode.replaceWith(fragment);
+      }
+
+      function renderEmojiNode(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          renderEmojiTextNode(node);
+          return;
+        }
+        if (node.nodeType !== Node.ELEMENT_NODE || node.matches('img, script, style, textarea, input, [data-emoji-fallback]')) return;
+        Array.from(node.childNodes).forEach(renderEmojiNode);
+      }
+
+      renderEmojiNode(document.body);
+      const observer = new MutationObserver(records => {
+        records.forEach(record => {
+          record.addedNodes.forEach(renderEmojiNode);
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+
+</body>
+
+</html>
